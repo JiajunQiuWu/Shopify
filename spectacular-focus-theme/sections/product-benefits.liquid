@@ -1,0 +1,223 @@
+<section
+  class="product-benefits full-width"
+  {% if section.settings.heading != blank %}
+    aria-labelledby="ProductBenefitsHeading-{{ section.id }}"
+  {% else %}
+    aria-label="Beneficios del producto"
+  {% endif %}
+>
+  <div class="product-benefits__inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="product-benefits__heading" id="ProductBenefitsHeading-{{ section.id }}">
+        {{ section.settings.heading | escape }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="product-benefits__grid">
+        {% for block in section.blocks %}
+          <article class="product-benefits__card" {{ block.shopify_attributes }}>
+            <div class="product-benefits__icon" aria-hidden="true">
+              {% case block.settings.icon %}
+                {% when 'truck' %}
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 6.75h11.25v10.5H3zM14.25 10.5h4.1l2.65 3v3.75h-6.75z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="7.125" cy="18" r="1.875" fill="var(--color-background)" stroke="currentColor" stroke-width="1.6"/>
+                    <circle cx="17.625" cy="18" r="1.875" fill="var(--color-background)" stroke="currentColor" stroke-width="1.6"/>
+                  </svg>
+                {% when 'lock' %}
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4.5" y="10" width="15" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M8 10V7a4 4 0 1 1 8 0v3M12 14.5v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                {% when 'return' %}
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 7H5V3M5.5 7A8 8 0 1 1 4 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 12h7m-3-3 3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+              {% endcase %}
+            </div>
+
+            <div class="product-benefits__content">
+              {% if block.settings.title != blank %}
+                <h3 class="product-benefits__title">{{ block.settings.title | escape }}</h3>
+              {% endif %}
+              {% if block.settings.description != blank %}
+                <p class="product-benefits__description">{{ block.settings.description | escape }}</p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .product-benefits {
+    padding-block: 4rem;
+  }
+
+  .product-benefits__inner {
+    grid-column: 2;
+    width: 100%;
+  }
+
+  .product-benefits__heading {
+    margin-block-end: 2rem;
+    text-align: center;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .product-benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .product-benefits__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    min-width: 0;
+    padding: 1.5rem;
+    border: 1px solid color-mix(in srgb, var(--color-foreground) 12%, transparent);
+    border-radius: 0.75rem;
+    background-color: color-mix(in srgb, var(--color-background) 97%, var(--color-foreground));
+  }
+
+  .product-benefits__icon {
+    display: grid;
+    flex: 0 0 2.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--color-foreground);
+    background-color: color-mix(in srgb, var(--color-foreground) 8%, var(--color-background));
+  }
+
+  .product-benefits__icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .product-benefits__content {
+    min-width: 0;
+  }
+
+  .product-benefits__title {
+    margin-block: 0 0.375rem;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .product-benefits__description {
+    color: color-mix(in srgb, var(--color-foreground) 75%, transparent);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 900px) {
+    .product-benefits__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .product-benefits {
+      padding-block: 2.5rem;
+    }
+
+    .product-benefits__heading {
+      margin-block-end: 1.5rem;
+    }
+
+    .product-benefits__grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .product-benefits__card {
+      padding: 1.25rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Beneficios del producto",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título de la sección",
+      "default": "Compra con confianza"
+    }
+  ],
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "truck", "label": "Envío" },
+            { "value": "lock", "label": "Pago seguro" },
+            { "value": "return", "label": "Devoluciones" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Envío rápido"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripción",
+          "default": "Recibe tu pedido en la puerta de tu casa en poco tiempo."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beneficios del producto",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "truck",
+            "title": "Envío rápido",
+            "description": "Recibe tu pedido en la puerta de tu casa en poco tiempo."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "lock",
+            "title": "Pago seguro",
+            "description": "Compra con tranquilidad gracias a un proceso de pago protegido."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "return",
+            "title": "Devoluciones sencillas",
+            "description": "Si cambias de opinión, devolver tu compra es fácil y sin complicaciones."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
