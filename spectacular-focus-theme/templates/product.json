@@ -12,9 +12,41 @@
     "main": {
       "type": "product",
       "settings": {}
+    },
+    "product_benefits": {
+      "type": "product-benefits",
+      "blocks": {
+        "shipping": {
+          "type": "benefit",
+          "settings": {
+            "icon": "truck",
+            "title": "Envío rápido",
+            "description": "Recibe tu pedido en la puerta de tu casa en poco tiempo."
+          }
+        },
+        "secure_payment": {
+          "type": "benefit",
+          "settings": {
+            "icon": "lock",
+            "title": "Pago seguro",
+            "description": "Compra con tranquilidad gracias a un proceso de pago protegido."
+          }
+        },
+        "easy_returns": {
+          "type": "benefit",
+          "settings": {
+            "icon": "return",
+            "title": "Devoluciones sencillas",
+            "description": "Si cambias de opinión, devolver tu compra es fácil y sin complicaciones."
+          }
+        }
+      },
+      "block_order": ["shipping", "secure_payment", "easy_returns"],
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "product_benefits"
   ]
 }
