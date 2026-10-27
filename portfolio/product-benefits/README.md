@@ -1,72 +1,84 @@
 # Product Benefits para Shopify
 
-Sección reutilizable de beneficios para la ficha de producto de una tienda Shopify. Presenta cada beneficio como una tarjeta con icono, título y descripción, para que la tienda pueda comunicar información de compra relevante junto al producto.
+Sección reutilizable para destacar beneficios de compra en la ficha de producto de una tienda Shopify. Presenta tarjetas con icono, título y descripción, integrada en la plantilla de producto del tema `spectacular-focus-theme`.
 
 ## Problema que resuelve
 
-La información sobre envíos, pagos y devoluciones puede quedar dispersa o pasar desapercibida en una ficha de producto. Esta sección la agrupa en un bloque visual, fácil de localizar y editable desde el personalizador del tema, sin tener que modificar el contenido Liquid para cada cambio.
+La información sobre envíos, pagos y devoluciones puede quedar dispersa o pasar desapercibida en una página de producto. Esta sección la reúne en un bloque visual situado después del contenido principal, para facilitar su consulta y permitir que el equipo de la tienda actualice los textos desde el editor visual de Shopify.
 
-## Funcionalidades
+## Implementación realizada
 
-- Muestra un título de sección configurable.
-- Permite añadir hasta 12 bloques de beneficio.
-- Cada bloque tiene un icono seleccionable, un título y una descripción.
-- Incluye tres iconos SVG: envío, pago seguro y devoluciones.
-- Ofrece tres beneficios de ejemplo como contenido inicial.
-- Adapta la cuadrícula al ancho de pantalla: tres columnas en escritorio, dos hasta 900 px y una hasta 600 px.
-- Incluye etiquetas accesibles para la sección y marca los iconos como decorativos.
+- Se creó la sección Liquid [`product-benefits.liquid`](../../spectacular-focus-theme/sections/product-benefits.liquid).
+- Se integró en la plantilla [`product.json`](../../spectacular-focus-theme/templates/product.json) después de la sección principal del producto.
+- Se configuró el esquema de Shopify para editar el título y añadir hasta 12 bloques.
+- Cada bloque permite seleccionar un icono, editar un título y añadir una descripción.
+- Se añadieron tres bloques iniciales: envío rápido, pago seguro y devoluciones sencillas.
+- Se incorporó diseño responsive: tres columnas en escritorio, dos hasta 900 px y una hasta 600 px.
+- Se incluyeron iconos SVG inline para envío, pago seguro y devoluciones.
+- Se añadieron etiquetas accesibles para la sección y se marcaron los iconos como decorativos.
+- No se utilizan JavaScript ni dependencias externas.
 
-## Tecnologías
+## Tecnologías utilizadas
 
-- Shopify Liquid y el esquema de sección de Shopify.
-- Plantilla de producto JSON.
+- Shopify Liquid.
+- Esquema JSON de secciones de Shopify (`{% schema %}`).
+- Plantilla JSON de producto.
 - CSS incluido en la sección mediante `{% stylesheet %}`.
-- SVG inline para los iconos.
+- SVG inline.
 
-No requiere bibliotecas JavaScript ni dependencias externas.
+## Instalación en un tema Shopify compatible
 
-## Instalación en un tema compatible
+Duplica el tema de destino antes de realizar cambios.
 
-La sección está preparada para un tema Shopify que admita secciones Liquid con bloques y plantillas JSON de producto. El tema de este proyecto ya incluye la integración.
+1. Copia [`product-benefits.liquid`](../../spectacular-focus-theme/sections/product-benefits.liquid) en la carpeta `sections/` del tema.
+2. Abre **Tienda online > Temas > Personalizar**.
+3. Abre una plantilla de producto y añade la sección **Beneficios del producto**.
+4. Guarda y revisa la vista previa en escritorio y móvil.
+5. Si gestionas la plantilla manualmente, añade una sección con el tipo `product-benefits` en el JSON de producto y colócala en el orden deseado. Consulta la integración de referencia en [`product.json`](../../spectacular-focus-theme/templates/product.json).
 
-1. Duplica el tema de destino antes de modificarlo.
-2. Copia [`product-benefits.liquid`](../../spectacular-focus-theme/sections/product-benefits.liquid) a la carpeta `sections/` del tema.
-3. En el editor visual de Shopify, abre una plantilla de producto y añade la sección **Beneficios del producto**. Shopify actualizará la plantilla JSON correspondiente.
-4. Si gestionas la plantilla manualmente, registra el tipo `product-benefits` en la plantilla JSON de producto y asigna el orden deseado. Puedes consultar la integración de este proyecto en [`product.json`](../../spectacular-focus-theme/templates/product.json).
-5. Guarda y previsualiza el tema duplicado antes de publicarlo.
-
-Comprueba que el tema de destino admite las etiquetas Liquid y el formato de plantilla utilizados por la sección.
+El tema compatible debe admitir secciones Liquid con bloques, plantillas JSON de producto y la etiqueta `{% stylesheet %}`. En otro tema podrían ser necesarios ajustes de layout o de las variables de color `--color-background` y `--color-foreground`.
 
 ## Personalización desde el editor visual
 
-1. En Shopify, ve a **Tienda online > Temas > Personalizar**.
-2. Abre una plantilla de producto, por ejemplo, **Producto predeterminado**.
-3. Selecciona **Beneficios del producto** en la lista de secciones. Si aún no está en la plantilla, añádela desde el editor.
+1. Ve a **Tienda online > Temas > Personalizar**.
+2. Abre una plantilla de producto, como **Producto predeterminado**.
+3. Selecciona **Beneficios del producto** o añádela si todavía no está en la plantilla.
 4. Edita el título de la sección.
-5. En cada bloque **Beneficio**, selecciona uno de los tres iconos disponibles y cambia el título y la descripción.
-6. Añade, elimina o reordena bloques según el contenido de la tienda, hasta el máximo de 12.
-7. Guarda los cambios y revisa la vista previa en escritorio y móvil.
+5. En cada bloque **Beneficio**, selecciona **Envío**, **Pago seguro** o **Devoluciones**.
+6. Cambia el título y la descripción del bloque.
+7. Añade, elimina o reordena bloques hasta un máximo de 12.
+8. Guarda y revisa ambas vistas, escritorio y móvil.
 
-## Comprobaciones y limitaciones
+## Comprobaciones realizadas y limitaciones
 
-- La sección está integrada en la plantilla de producto del proyecto y aparece después de la sección principal.
-- El esquema limita la sección a 12 bloques y ofrece las opciones de icono **Envío**, **Pago seguro** y **Devoluciones**.
-- La sección fue creada y probada en Shopify, según el estado indicado para este proyecto. Al preparar este README, se contrastó la implementación con los archivos fuente; no se ejecutaron pruebas adicionales ni se validó la instalación en otro tema.
-- El contenido de los bloques es texto plano: no hay campos para enlaces, contenido enriquecido ni iconos personalizados desde el editor.
-- Los puntos de cambio de columnas están definidos en el CSS de la sección (900 px y 600 px). No hay controles visuales para cambiar el diseño o esos valores.
+### Comprobaciones
+
+- La sección está registrada en la plantilla de producto con el tipo `product-benefits`.
+- La plantilla coloca la sección después de la sección principal.
+- El esquema incluye el título, los bloques, las opciones de icono, el límite de 12 bloques y un preset con tres beneficios.
+- Según el estado indicado para el proyecto, la funcionalidad fue creada y probada en Shopify.
+- Para actualizar este README se contrastó la documentación con los archivos Liquid y JSON reales. No se ejecutaron pruebas adicionales ni se validó la instalación en otro tema.
+
+### Limitaciones
+
+- Solo hay tres iconos disponibles; no se pueden cargar iconos personalizados desde el editor.
+- Los campos de título y descripción son texto plano, sin enlaces ni contenido enriquecido.
+- Los puntos de cambio responsive están definidos en el código: 900 px y 600 px.
+- Los colores dependen de las variables del tema compatible.
+- Este documento no incluye publicación, despliegue ni configuración de una tienda.
 
 ## Capturas
 
-Añade las imágenes en `portfolio/product-benefits/screenshots/` y actualiza las rutas si usas otros nombres.
+Sustituye las imágenes pendientes por capturas reales. Se propone guardarlas en `portfolio/product-benefits/screenshots/`.
 
 ### Escritorio
 
-![Captura de la sección en escritorio — pendiente de añadir](./screenshots/escritorio.png)
+![Captura de Product Benefits en escritorio — pendiente de añadir](./screenshots/escritorio.png)
 
 ### Móvil
 
-![Captura de la sección en móvil — pendiente de añadir](./screenshots/movil.png)
+![Captura de Product Benefits en móvil — pendiente de añadir](./screenshots/movil.png)
 
 ### Editor de Shopify
 
-![Captura de la sección en el editor visual de Shopify — pendiente de añadir](./screenshots/editor-shopify.png)
+![Captura de Product Benefits en el editor visual de Shopify — pendiente de añadir](./screenshots/editor-shopify.png)
