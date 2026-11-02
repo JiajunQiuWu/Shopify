@@ -47,15 +47,21 @@ Desde el editor visual de Shopify:
 
 Los valores iniciales también se pueden cambiar en la plantilla JSON del tema.
 
-## Capturas
+## Capturas de pantalla
 
-No hay capturas reales de escritorio ni de móvil en el repositorio, así que no se incluyen imágenes ni enlaces de captura pendientes que puedan parecer reales. Añade las capturas del tema cuando estén disponibles, por ejemplo, en `portfolio/product-benefits/screenshots/`.
+### Escritorio
+
+![Sección Compra con confianza en escritorio](screenshots/desktop.png)
+
+### Móvil
+
+![Sección Compra con confianza en móvil](screenshots/mobile.png)
 
 ## Pruebas y estado de verificación
 
 - `shopify theme check`, ejecutado desde `spectacular-focus-theme`: **40 archivos inspeccionados, sin incidencias**.
 - Se verificó en el código que la sección existe y que `product.json` la referencia después de la sección principal.
-- El comportamiento responsive se ha comprobado visualmente.
+- Las capturas muestran la sección en escritorio y móvil; el CSS define los cambios de columnas en los puntos de adaptación indicados.
 - En la sesión actual no se han vuelto a verificar la edición ni el guardado de bloques desde el editor de temas de Shopify.
 - No se ha comprobado la instalación en otros temas ni se ha publicado o desplegado el proyecto.
 
@@ -65,4 +71,3 @@ No hay capturas reales de escritorio ni de móvil en el repositorio, así que no
 - Título y descripción son texto plano, sin enlaces ni contenido enriquecido.
 - Los puntos de cambio responsive (900 px y 600 px) están definidos en el CSS.
 - Los colores dependen de las variables del tema compatible.
-- Las capturas reales todavía no están disponibles en el repositorio.
