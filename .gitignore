@@ -1,0 +1,17 @@
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# Local development artifacts
+.DS_Store
+Thumbs.db
+node_modules/
+.shopify/
+.vercel/
